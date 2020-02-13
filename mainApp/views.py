@@ -88,7 +88,7 @@ def FormQAView(request):
 
 run_event = threading.Event()
 run_event.set()
-myThread = threading.Thread(target=responseFunction, args = [run_event])
+myThread = threading.Thread(target=responseFunction, args = [run_event]).start()
 
 def simple_upload(request):
     my_dict = {}
@@ -128,10 +128,7 @@ def getAnswer(request):
     f.close()
     # print("CONTEXT: "+context)
     # print("QUESTION: "+question)
-
     global query, response
-    if not myThread.is_alive():
-        myThread.start()
     query = (context, question)
     while not response:
         sleep(0.1)
