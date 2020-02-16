@@ -4,5 +4,5 @@ from rest_framework import serializers
 class FileNamesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = FileTable
-        fields = ['filename']
+        fields = ['file']
 

@@ -18,6 +18,28 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 import numpy as np
+
+from rest_framework.parsers import FileUploadParser
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
+
+
+class FileUploadView(APIView):
+    parser_class = (FileUploadParser,)
+
+    def post(self, request, *args, **kwargs):
+
+      file_serializer = FileNamesSerializer(data=request.data)
+
+      if file_serializer.is_valid():
+        #   return HttpResponse("Sucess")
+          file_serializer.save()
+          return Response(file_serializer.data, status=status.HTTP_201_CREATED)
+      else:
+          return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 query = []
 response = ""
 
@@ -127,7 +149,7 @@ def getAnswer(request):
     context = str(f.read())
     f.close()
     # print("CONTEXT: "+context)
-    # print("QUESTION: "+question)
+    # print("QUESTION: "+question)]
     global query, response
     query = (context, question)
     while not response:
@@ -142,3 +164,5 @@ def deleteFile(request):
     f = FileTable.objects.get(filename=fileDel)
     f.delete()
     return JsonResponse({'Success':True})
+
+

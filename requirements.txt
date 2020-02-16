@@ -1,0 +1,8 @@
+numpy
+tqdm
+spacy
+django
+bottle
+tensorflow=1.15
+djangorestframework
+ujson

@@ -14,4 +14,5 @@ urlpatterns = [
     path('getfilenames/', views.getFileNames, name='getFileNames'),
     path('getanswer/', views.getAnswer, name='getAnswer'),
     path('deletefile/', views.deleteFile, name='deleteFile'),
+    path('incident_upload/', views.FileUploadView.as_view())
 ]
