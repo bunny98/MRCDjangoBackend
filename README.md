@@ -1,5 +1,5 @@
 # MRCDjangoBackend
-A Django backend for tensorflow implementation of Google's [QANet](https://openreview.net/pdf?id=B14TlG-RW), being used with the [MRC mobile application] (https://github.com/bunny98/MRC-Android-Application)
+A Django backend for tensorflow implementation of Google's [QANet](https://openreview.net/pdf?id=B14TlG-RW), being used with the [MRCMobileApplication](https://github.com/bunny98/MRC-Android-Application)
 
 ## Dataset
 The dataset used for this task is [Stanford Question Answering Dataset](https://rajpurkar.github.io/SQuAD-explorer/).
@@ -44,7 +44,7 @@ https://drive.google.com/open?id=1mS-981dpppGzfTHgQ1HmlgcBCOD9llqk
 ### Demo Server
 To start the django server, run
 ```bash
-python manage.py runsever
+python manage.py runserver
 ```
 Note: Information regarding various APIs can be found in mainApp/urls.py
 
