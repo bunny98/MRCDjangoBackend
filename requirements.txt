@@ -3,6 +3,6 @@ tqdm
 spacy
 django
 bottle
-tensorflow=1.15
+tensorflow>=1.15.2
 djangorestframework
 ujson
