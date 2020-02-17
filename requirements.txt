@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 absl-py==0.8.1
 amqp==2.5.2
 astor==0.8.0
@@ -59,3 +60,13 @@ webencodings==0.5.1
 Werkzeug==0.16.1
 wrapt==1.11.2
 zipp==2.2.0
+=======
+numpy
+tqdm
+spacy
+django
+bottle
+tensorflow>=1.15.2
+djangorestframework
+ujson
+>>>>>>> ad4cbf73592b61c9753eb18accd1d9a0ca1dc924
