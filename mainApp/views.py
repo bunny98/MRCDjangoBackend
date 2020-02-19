@@ -44,8 +44,8 @@ query = []
 response = ""
 
 
-context = """Forests are an intricate ecosystem on earth which contains trees, shrubs, grasses and more. The constituents of forests which are trees and plants form a major part of the forests. Furthermore, they create a healthy environment so that various species of animals can breed and live there happily. Therefore, we see how forests are a habitat for a plethora of wild animals and birds. In addition to being of use to wildlife, forests benefit mankind greatly and hold immense significance.
-Forests cover a significant area of the earth. They are a great natural asset to any region and hold immense value. For instance, forests fulfill all our needs of timber, fuel, fodder, bamboos and more. They also give us a variety of products that hold great commercial as well as industrial value."""
+# context = """Forests are an intricate ecosystem on earth which contains trees, shrubs, grasses and more. The constituents of forests which are trees and plants form a major part of the forests. Furthermore, they create a healthy environment so that various species of animals can breed and live there happily. Therefore, we see how forests are a habitat for a plethora of wild animals and birds. In addition to being of use to wildlife, forests benefit mankind greatly and hold immense significance.
+# Forests cover a significant area of the earth. They are a great natural asset to any region and hold immense value. For instance, forests fulfill all our needs of timber, fuel, fodder, bamboos and more. They also give us a variety of products that hold great commercial as well as industrial value."""
 config = flags.FLAGS
 
 sys.path.insert(0, '/media/kavyansh/8A9A1B9F9A1B86BB/QANet-master')
@@ -87,11 +87,14 @@ def responseFunction(run_event):
                         response = " ".join(context[yp1[0]:yp2[0]])
                         query = []
 
+
+run_event = threading.Event()
+run_event.set()
+myThread = threading.Thread(target=responseFunction, args = [run_event]).start()
+
 def FormQAView(request):
     global query, response
     form = forms.FormQA()
-    if not myThread.is_alive():
-        myThread.start()
     if request.method == 'POST':
         form = forms.FormQA(request.POST)
         if form.is_valid():
@@ -108,9 +111,6 @@ def FormQAView(request):
     
     return render(request, 'main/form.html', context={"form":form})
 
-run_event = threading.Event()
-run_event.set()
-myThread = threading.Thread(target=responseFunction, args = [run_event]).start()
 
 def simple_upload(request):
     my_dict = {}
@@ -136,7 +136,7 @@ def getFileNames(request):
     files = FileTable.objects.all()
     my_dict = {'name': []}
     for obj in files:
-        my_dict['name'].append(obj.filename)
+        my_dict['name'].append(obj.file.name)
     print(my_dict)
     return JsonResponse(my_dict)
 
